@@ -1,9 +1,31 @@
-#Node cookbook
+#Mongo cookbook
 
-description
-This cookbook installed mongodb from source.
-It creates its own apt package and then installs it.
-The recipe also creates the config files and then service file with dynamic input of variables.
+## What is Chef?
+
+Chef is a configuration management tool that allows you to provision code and create a secure, tested environment. Chef uses cookbooks which include provisioned recipes that install required packages. This means that when you create an AMI it comes with a standardised, provisioned environment.
+
+## How to use the cookbook?
+
+The cookbook is simple to use. Some commands you will need to ensure your cookbook is working. These commands will run your tests both locally and in AWS.
+
+## Commands
+
+Running a unit test
+```
+chef exec rspec
+```
+Testing Locally
+```
+kitchen test
+```
+Testing in AWS
+```
+KITCHEN_YAML=kitchen_cloud.yml kitchen test
+```
+
+## Pre-requisites
+
+- chef
 
 ## list of what is installed
 - Mongodb
@@ -13,14 +35,6 @@ The recipe also creates the config files and then service file with dynamic inpu
 Changes are made in the attribute file.
 Changing the port
 
-## Commands
-
 ```
-chef exec rspec
-```
-```
-kitchen test
-```
-```
-KITCHEN_YAML=kitchen_cloud.yml kitchen test
+default['mongo']['port'] = <new_value_here>
 ```
